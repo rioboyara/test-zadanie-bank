@@ -11,10 +11,10 @@
 	<header>
 		<div class="header1">
 			<div class="header_logo">
-			<img src="images/header_logo.png">
+			<img src="images/header_logo.png" alt="logo">
 			</div>
 
-			<div class="header_number"><px -ms-format-detection="none">8-800-100-5005</p><p x-ms-format-detection="none">+7 (3452) 522-000</p> 
+			<div class="header_number"><p x-ms-format-detection="none">8-800-100-5005</p><p x-ms-format-detection="none">+7 (3452) 522-000</p> 
 			</div>
 		</div>
 
@@ -58,7 +58,7 @@
                 	<input type="number" id="summa" name="summa" min="1000" max="3000000"/>
                 </p>
                 <p>
-                	<label for="year" class="labelyear">Срок вклада</label>
+                	<label for="year" class="labelyear" id="labelyear">Срок вклада</label>
 			 		<select name="year">
                 	<option>1 год</option>
                 	<option>2 года</option>
@@ -68,7 +68,7 @@
                 	</select>
                 </p>
                 <p>
-                <label for="popolnenie" class="labelpopolnenie">Пополнение вклада</label>
+                <label for="popolnenie" class="labelpopolnenie" id="labelpopolnenie">Пополнение вклада</label>
                 <input type="radio" name="popolnenie" value="rad1">Нет
  				<input type="radio" name="popolnenie" value="rad2" style="margin-left: 20px;">Да
  				</p>
@@ -90,12 +90,12 @@
         	<!-- Бегунки -->
         	<div class="calc_range">
         		<form onsubmit="return false" oninput="level.value = flevel.valueAsNumber" style="height: 20px;">
-				<input name="range_summa" id="range_s" type="range" min="1000" max="3000000" value="1000" step="0">
+				<input name="range_summa" id="range_s" type="range" min="1000" max="3000000" value="1000">
 				</form>
 				<p class="range_s_p1">1 тыс. руб.</p><p class="range_s_p2">3 000 000</p>
 				
 				<form onsubmit="return false" oninput="level.value = flevel.valueAsNumber" style="height: 85px;">
-				<input name="range_popolnenie" id="range_p" type="range" min="1000" max="3000000" value="1000" step="0">
+				<input name="range_popolnenie" id="range_p" type="range" min="1000" max="3000000" value="1000">
 				</form>
 				<p class="range_p_p1">1 тыс. руб.</p><p class="range_p_p2">3 000 000</p>
         	</div>
