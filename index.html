@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Калькулятор банковских вкладов — рассчитайте доходность вашего вклада онлайн">
+	<title>Банк — Калькулятор вкладов</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+	<!-- Header -->
+	<header class="header">
+		<div class="container header__inner">
+			<a href="#" class="header__logo" aria-label="На главную">
+				<img src="images/header_logo.png" alt="МойБанк" class="header__logo-img">
+			</a>
+
+			<button class="header__burger" id="burger" aria-label="Открыть меню" aria-expanded="false">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+
+			<nav class="header__nav" id="nav">
+				<a href="#" class="header__link">Кредитные карты</a>
+				<a href="#" class="header__link header__link--active">Вклады</a>
+				<a href="#" class="header__link">Дебетовая карта</a>
+				<a href="#" class="header__link">Страхование</a>
+				<a href="#" class="header__link">Интернет-банк</a>
+			</nav>
+
+			<div class="header__phones">
+				<a href="tel:88001005005" class="header__phone">8-800-100-5005</a>
+				<a href="tel:+73452522000" class="header__phone header__phone--small">+7 (3452) 522-000</a>
+			</div>
+		</div>
+	</header>
+
+	<main class="main">
+		<div class="container">
+
+			<!-- Breadcrumbs -->
+			<nav class="breadcrumbs" aria-label="Навигация по страницам">
+				<ol class="breadcrumbs__list">
+					<li class="breadcrumbs__item"><a href="#" class="breadcrumbs__link">Главная</a></li>
+					<li class="breadcrumbs__item"><a href="#" class="breadcrumbs__link">Вклады</a></li>
+					<li class="breadcrumbs__item" aria-current="page"><span class="breadcrumbs__current">Калькулятор</span></li>
+				</ol>
+			</nav>
+
+			<!-- Hero section -->
+			<section class="hero">
+				<div class="hero__content">
+					<h1 class="hero__title">Калькулятор вкладов</h1>
+					<p class="hero__subtitle">Рассчитайте доходность вашего вклада с учётом капитализации и пополнений</p>
+				</div>
+			</section>
+
+			<!-- Calculator -->
+			<section class="calc" id="calculator">
+				<form class="calc__form" id="calcForm" novalidate>
+					<div class="calc__grid">
+
+						<!-- Left column — inputs -->
+						<div class="calc__inputs">
+
+							<div class="form-group">
+								<label for="deposit-date" class="form-label">Дата оформления вклада</label>
+								<input type="date" id="deposit-date" class="form-input" required>
+							</div>
+
+							<div class="form-group">
+								<label for="deposit-amount" class="form-label">Сумма вклада, ₽</label>
+								<input type="text" inputmode="numeric" id="deposit-amount" class="form-input" placeholder="100 000" required>
+								<input type="range" id="deposit-amount-range" class="form-range" min="10000" max="10000000" step="10000" value="100000">
+								<div class="form-range-labels">
+									<span>10 000 ₽</span>
+									<span>10 000 000 ₽</span>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="deposit-term" class="form-label">Срок вклада</label>
+								<select id="deposit-term" class="form-select">
+									<option value="3">3 месяца</option>
+									<option value="6">6 месяцев</option>
+									<option value="12" selected>1 год</option>
+									<option value="24">2 года</option>
+									<option value="36">3 года</option>
+									<option value="60">5 лет</option>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label class="form-label">Капитализация процентов</label>
+								<div class="form-toggle-group">
+									<label class="form-toggle">
+										<input type="radio" name="capitalization" value="monthly" checked>
+										<span class="form-toggle__label">Ежемесячно</span>
+									</label>
+									<label class="form-toggle">
+										<input type="radio" name="capitalization" value="end">
+										<span class="form-toggle__label">В конце срока</span>
+									</label>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="form-label">Ежемесячное пополнение</label>
+								<div class="form-toggle-group">
+									<label class="form-toggle">
+										<input type="radio" name="replenish" value="no" checked>
+										<span class="form-toggle__label">Нет</span>
+									</label>
+									<label class="form-toggle">
+										<input type="radio" name="replenish" value="yes">
+										<span class="form-toggle__label">Да</span>
+									</label>
+								</div>
+							</div>
+
+							<div class="form-group form-group--replenish" id="replenishGroup" hidden>
+								<label for="replenish-amount" class="form-label">Сумма пополнения, ₽</label>
+								<input type="text" inputmode="numeric" id="replenish-amount" class="form-input" placeholder="10 000">
+								<input type="range" id="replenish-amount-range" class="form-range" min="0" max="1000000" step="1000" value="10000">
+								<div class="form-range-labels">
+									<span>0 ₽</span>
+									<span>1 000 000 ₽</span>
+								</div>
+							</div>
+						</div>
+
+						<!-- Right column — results -->
+						<div class="calc__results" id="calcResults">
+							<div class="calc__results-data" id="resultsData">
+								<div class="result-card result-card--total">
+									<span class="result-card__label">Итого к получению</span>
+									<span class="result-card__value" id="resultTotal">0 ₽</span>
+								</div>
+								<div class="result-card">
+									<span class="result-card__label">Начальная сумма</span>
+									<span class="result-card__value" id="resultInitial">0 ₽</span>
+								</div>
+								<div class="result-card">
+									<span class="result-card__label">Доход по процентам</span>
+									<span class="result-card__value result-card__value--accent" id="resultProfit">0 ₽</span>
+								</div>
+								<div class="result-card">
+									<span class="result-card__label">Сумма пополнений</span>
+									<span class="result-card__value" id="resultReplenish">0 ₽</span>
+								</div>
+								<div class="result-card">
+									<span class="result-card__label">Процентная ставка</span>
+									<span class="result-card__value" id="resultRate">0%</span>
+								</div>
+								<div class="result-card">
+									<span class="result-card__label">Дата окончания</span>
+									<span class="result-card__value" id="resultEndDate">—</span>
+								</div>
+
+								<!-- Progress bar -->
+								<div class="result-bar">
+									<div class="result-bar__track">
+										<div class="result-bar__fill result-bar__fill--initial" id="barInitial" style="width:0%"></div>
+										<div class="result-bar__fill result-bar__fill--replenish" id="barReplenish" style="width:0%"></div>
+										<div class="result-bar__fill result-bar__fill--profit" id="barProfit" style="width:0%"></div>
+									</div>
+									<div class="result-bar__legend">
+										<span class="result-bar__legend-item result-bar__legend-item--initial">Вклад</span>
+										<span class="result-bar__legend-item result-bar__legend-item--replenish">Пополнения</span>
+										<span class="result-bar__legend-item result-bar__legend-item--profit">Проценты</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="calc__actions">
+						<button type="submit" class="btn btn--primary" id="calcBtn">
+							<svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+								<rect x="3" y="2" width="14" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/>
+								<line x1="6" y1="6" x2="14" y2="6" stroke="currentColor" stroke-width="1.5"/>
+								<circle cx="7.5" cy="10" r="1" fill="currentColor"/>
+								<circle cx="10" cy="10" r="1" fill="currentColor"/>
+								<circle cx="12.5" cy="10" r="1" fill="currentColor"/>
+								<circle cx="7.5" cy="13" r="1" fill="currentColor"/>
+								<circle cx="10" cy="13" r="1" fill="currentColor"/>
+								<circle cx="12.5" cy="13" r="1" fill="currentColor"/>
+							</svg>
+							Рассчитать
+						</button>
+						<button type="reset" class="btn btn--secondary" id="resetBtn">Сбросить</button>
+					</div>
+				</form>
+			</section>
+
+			<!-- Info section -->
+			<section class="info">
+				<h2 class="info__title">Как работает калькулятор</h2>
+				<div class="info__grid">
+					<article class="info__card">
+						<div class="info__icon">1</div>
+						<h3 class="info__card-title">Укажите сумму</h3>
+						<p class="info__card-text">Введите сумму вклада от 10 000 до 10 000 000 рублей</p>
+					</article>
+					<article class="info__card">
+						<div class="info__icon">2</div>
+						<h3 class="info__card-title">Выберите срок</h3>
+						<p class="info__card-text">Выберите срок вклада от 3 месяцев до 5 лет</p>
+					</article>
+					<article class="info__card">
+						<div class="info__icon">3</div>
+						<h3 class="info__card-title">Получите результат</h3>
+						<p class="info__card-text">Моментальный расчёт с учётом капитализации и пополнений</p>
+					</article>
+				</div>
+			</section>
+
+		</div>
+	</main>
+
+	<!-- Footer -->
+	<footer class="footer">
+		<div class="container footer__inner">
+			<div class="footer__brand">
+				<img src="images/header_logo.png" alt="МойБанк" class="footer__logo-img">
+			</div>
+			<nav class="footer__nav" aria-label="Навигация в подвале">
+				<a href="#" class="footer__link">Кредитные карты</a>
+				<a href="#" class="footer__link">Вклады</a>
+				<a href="#" class="footer__link">Дебетовая карта</a>
+				<a href="#" class="footer__link">Страхование</a>
+				<a href="#" class="footer__link">Интернет-банк</a>
+			</nav>
+			<div class="footer__contacts">
+				<a href="tel:88001005005" class="footer__phone">8-800-100-5005</a>
+				<p class="footer__copy">&copy; 2023–2026 МойБанк. Все права защищены.</p>
+			</div>
+		</div>
+	</footer>
+
+	<script src="script.js"></script>
+</body>
+</html>
